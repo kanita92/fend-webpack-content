@@ -8,6 +8,10 @@ module.exports = {
     mode: 'development',
     devtool: 'source-map',
     stats: 'verbose',
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'main.js',
+      },
     module: {
         rules: [
             {
