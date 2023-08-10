@@ -1,0 +1,1 @@
+import { checkForUrl } from "../src/client/js/urlChecker"

@@ -1,1 +1,0 @@
-import { checkForName } from "../src/client/js/nameChecker"

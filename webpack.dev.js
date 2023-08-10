@@ -9,8 +9,8 @@ module.exports = {
     devtool: 'source-map',
     stats: 'verbose',
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'main.js',
+        libraryTarget: 'var',
+        library: 'Client'
       },
     module: {
         rules: [
@@ -20,7 +20,7 @@ module.exports = {
                 loader: "babel-loader"
             },
             {
-                test: /.scss$/,
+                test: /\.scss$/,
                 use: [ 'style-loader', 'css-loader', 'sass-loader' ]
                 }
         ]
