@@ -19,3 +19,5 @@ This web tool can be used to run Natural Language Processing (NLP) on articles o
 Open the project folder and open two terminals. In the first terminal, run the following command `npm build`, this will create the dist folder. Then run `npm run build-dev` which will build and start the webpack dev server at port 8080. In the second terminal, run the following command `npm run build-prod` This will open the web tool in port 8081. Then run `npm start` in terminal 2, which will run the Express server.
 
 In the app running on http://localhost:8081/ , enter the URL of the article/blog that you would like to analyze and then click Submit. The sentiment analysis consisting of Polarity, Subjectivity and Text will be displayed following that.
+
+The `index.html` file is located inside `src/client/views`.
