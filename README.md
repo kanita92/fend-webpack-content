@@ -1,40 +1,21 @@
-# Webpack Express Example App
+# Evaluate a News Article with Natural Language Processing Udacity Project
 
-The goal of this repo is be an example of a basic but functional app built on Express and Webpack.
+## Table of Contents
 
-If you are just starting this process, start from branch 0-initial-setup. Otherwise, switch to the appropriate numbered branches of this repo as needed. The branches are:
-- [0-initial-setup](https://github.com/udacity/fend-webpack-content/tree/0-initial-setup)
-- [1-install-webpack](https://github.com/udacity/fend-webpack-content/tree/1-install-webpack)
-- [2-add-webpack-entry](https://github.com/udacity/fend-webpack-content/tree/2-add-webpack-entry)
-- [3-webpack-output-and-loaders](https://github.com/udacity/fend-webpack-content/tree/3-webpack-output-and-loaders)
-- [4-webpack-plugins](https://github.com/udacity/fend-webpack-content/tree/4-webpack-plugins)
-- [5-webpack-mode](https://github.com/udacity/fend-webpack-content/tree/5-webpack-mode)
-- [6-webpack-for-convenience](https://github.com/udacity/fend-webpack-content/tree/6-webpack-for-convenience)
+- [Project Description](#description)
+- [Usage](#usage)
+- [Instructions](#instructions)
 
-Each branch in this project is a step along the path to creating a fully functional webpack setup. In each branch, there will be a documentation file that lists out the steps taken in that branch (each step is also roughly a git commit if you look at the history) which you can use as a checklist when setting up your own projects. 
+## Project Description
 
-## What we will cover
+This project builds a web tool using webpack that allows user to run Natural Language Processing (NLP) on articles or blogs found on websites. To analyze the article/blog, an external API call is made to MeaningCloud API and response such as Polarity,Subjectvity and Text are received based on the website URL the user provides in the front-end form. The build tool used in this project is Webpack, the external API used is MeaningCloud, the web application framework for routing is Express. The project also offers offline capabilites using Service worker. The Webserver is Node and unit tests are also available in the project that uses the Jest library. Dependencies that are installed in the package.json file are axios,body-parser,cors,dotenv,express,jest-fetch-mock,webpack and webpack-cli. These dependencies have been installed using 'npm install' command. Different plugins and loaders have also been installed in the project so that webpack can function correctly.Sass has been utilized in this project as well.
 
-We will cover:
+## Usage
 
-- Webpack entry point
-- Webpack output and dist folder
-- Webpack Loaders
-- Webpack Plugins
-- Webpack Mode
-- Tools for convenient Webpack development
+This web tool can be used to run Natural Language Processing (NLP) on articles or blogs found on websites.
 
-## Get Up and Running
+## Instructions
 
-Fork this repo, then clone the branch of your choice from your forked repo down to your computer:
+Open the project folder and open two terminals. In the first terminal, run the following command `npm build`, this will create the dist folder. Then run `npm run build-dev` which will build and start the webpack dev server at port 8080. In the second terminal, run the following command `npm run build-prod` This will open the web tool in port 8081. Then run `npm start` in terminal 2, which will run the Express server.
 
-```
-git clone -- git@github.com:[your-user-name]/webpack-express.git --
-```
-
-`cd` into your new folder and run:
-- ```npm install```
-- ```npm start``` to start the app
-- this app runs on localhost:8080, but you can of course edit that in server.js
-
-**Note:** Webpack needs to be at version 4 in order for this repo to work as expected. Webpack is automatically included at the correct version in the `package.json` provided here.
+In the app running on http://localhost:8081/ , enter the URL of the article/blog that you would like to analyze and then click Submit. The sentiment analysis consisting of Polarity, Subjectivity and Text will be displayed following that.
