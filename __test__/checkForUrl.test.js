@@ -7,12 +7,12 @@ describe("Testing the checkForUrl function", () => {
   // The test() function has two arguments - a string description, and an actual test as a callback function.
   test("Testing the checkForUrl() function", () => {
     // Define the input for the function
-    const validUrl = "https://www.udacity.com";
+    const correctUrl = "https://www.udacity.com";
 
     // Define the expected output
     const expectedValidResponse = "Thank you for the URL";
 
     // The expect() function, in combination with a Jest matcher, is used to check if the function produces the expected output
-    expect(checkForUrl(validUrl)).toEqual(expectedValidResponse);
+    expect(checkForUrl(correctUrl)).toEqual(expectedValidResponse);
   });
 });

@@ -41,14 +41,12 @@ app.get("/test", function (req, res) {
   }
 
   // Make the API call to https://api.meaningcloud.com/sentiment-2.1
-  // You can use a library like axios to make the API call
-  // Here's an example using axios:
   axios
     .get(apiUrl, {
       params: {
         key: process.env.API_KEY,
         lang: "auto",
-        txt: url, // Pass the URL as the text parameter
+        txt: url,
       },
     })
     .then((response) => {
