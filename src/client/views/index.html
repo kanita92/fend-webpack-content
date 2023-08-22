@@ -8,13 +8,13 @@
   <body>
     <header>
       <div class="">Article Natural Language Processing Tool</div>
-      <div class="">navigation</div>
+      <!-- <div class="">navigation</div> -->
     </header>
 
     <main>
       <section>
         <form class="" onsubmit="return Client.handleSubmit(event)">
-          <h1>Please enter the website URL</h1>
+          <h1>Enter URL for website</h1>
           <input
             id="url"
             type="url"
@@ -27,21 +27,27 @@
             name=""
             value="Submit"
             onclick="return Client.handleSubmit(event)"
-            onsubmit="return handleSubmit(event)"
           />
         </form>
       </section>
 
       <section>
-        <strong>Form Results:</strong>
+        <strong>Sentiment Analysis</strong>
+        <br />
         <div id="results"></div>
+        <br />
+        <div id="scoretag">Polarity:</div>
+        <br />
+        <div id="subjectivity">Subjectivity:</div>
+        <br />
+        <div id="text">URL:</div>
       </section>
     </main>
 
     <footer>
-      <p>This is a footer</p>
+      <p>Have a great day!</p>
     </footer>
-    <script src="../js/formHandler.js"></script>
+    <!-- <script src="../js/formHandler.js"></script> -->
     <script>
       // Check that service workers are supported
       if ("serviceWorker" in navigator) {

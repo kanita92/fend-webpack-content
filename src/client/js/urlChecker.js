@@ -1,12 +1,12 @@
 function checkForUrl(url) {
   console.log("::: Running checkForUrl :::", url);
   let pattern =
-    /^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+\.){1,}[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})?$/;
+    /(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?\/[a-zA-Z0-9]{2,}|((https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?)|(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})?/;
 
   if (pattern.test(url)) {
-    alert("Correct URL!");
+    return "Thank you for the URL";
   } else {
-    alert("Incorrect URL. Please enter correct URL");
+    return "Incorrect URL. Please enter correct URL";
   }
 }
 

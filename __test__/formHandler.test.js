@@ -1,16 +1,23 @@
-// The describe() function takes two arguments - a string description, and a test suite as a callback function.  
-// A test suite may contain one or more related tests    
-// Import the js file to test
-import { handleSubmit } from "../src/client/js/formHandler"
+// Import the callServer function
+import { callServer } from "../src/client/js/formHandler";
 
-// The describe() function takes two arguments - a string description, and a test suite as a callback function.  
-// A test suite may contain one or more related tests  
-describe("Testing the submit functionality", () => {
-    // The test() function has two arguments - a string description, and an actual test as a callback function.  
-    test("Testing the handleSubmit() function", () => {
-          // Define the input for the function, if any, in the form of variables/array
-          // Define the expected output, if any, in the form of variables/array
-          // The expect() function, in combination with a Jest matcher, is used to check if the function produces the expected output
-          // The general syntax is `expect(myFunction(arg1, arg2, ...)).toEqual(expectedValue);`, where `toEqual()` is a matcher
-          expect(handleSubmit).toBeDefined();
-    })});
+// Mock the fetch function for testing purposes
+global.fetch = jest.fn(() =>
+  Promise.resolve({ json: () => Promise.resolve({ message: "API response" }) })
+);
+
+describe("callServer function", () => {
+  test("should call the server with the correct URL", async () => {
+    const formText = "https://www.udacity.com";
+
+    // Call the callServer function
+    const response = await callServer(formText);
+
+    // Assertion 1
+    expect(fetch).toHaveBeenCalledWith(
+      `http://localhost:8081/test?url=${formText}`
+    );
+    // Assertion 2
+    expect(response.message).toBe("API response");
+  });
+});

@@ -1,16 +1,37 @@
+import { checkForUrl } from "./urlChecker";
+
+async function callServer(formText) {
+  const res = await fetch(`http://localhost:8081/test?url=${formText}`);
+  return await res.json();
+}
+
 function handleSubmit(event) {
   event.preventDefault();
 
-  // check what text was put into the form field
   let formText = document.getElementById("url").value;
-  checkForUrl(formText);
 
+  let urlError = checkForUrl(formText);
+
+  if (urlError) {
+    alert(urlError);
+    return;
+  }
   console.log("::: Form Submitted :::");
-  fetch("http://localhost:8080/test")
-    .then((res) => res.json())
-    .then(function (res) {
-      document.getElementById("results").innerHTML = res.message;
-    });
+
+  callServer(formText).then(function (data) {
+    // console.log("Response data:", data);
+    // console.log("Message:", data.message);
+    document.getElementById(
+      "scoretag"
+    ).innerHTML = `The polarity of this website is : ${data.score_tag}`;
+    document.getElementById(
+      "subjectivity"
+    ).innerHTML = `The subjectivity of this website is : ${data.subjectivity}`;
+    document.getElementById(
+      "text"
+    ).innerHTML = `The URL of the article : ${data.sentence_list[0].text}`;
+  });
 }
 
 export { handleSubmit };
+export { callServer };

@@ -7,7 +7,7 @@
     "test": "jest",
     "start": "node src/server/index.js",
     "build": "webpack --config webpack.prod.js",
-    "build-prod": "webpack-dev-server  --config webpack.prod.js --open",
+    "build-prod": "rm -rf dist && webpack-dev-server  --config webpack.prod.js --open",
     "build-dev": "webpack-dev-server  --config webpack.dev.js --open"
   },
   "repository": {
@@ -38,6 +38,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.8.1",
     "html-webpack-plugin": "^5.5.3",
+    "jest": "^29.6.2",
     "mini-css-extract-plugin": "^2.7.6",
     "node-fetch": "^3.3.2",
     "node-sass": "^9.0.0",

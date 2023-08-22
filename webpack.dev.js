@@ -5,10 +5,14 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+// const WorkboxPlugin = require("workbox-webpack-plugin");
 
 module.exports = {
   entry: "./src/client/index.js",
-  mode: "production",
+  mode: "development",
+  optimization: {
+    minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
+  },
   devtool: "source-map",
   stats: "verbose",
   output: {
@@ -24,7 +28,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
     ],
   },
@@ -33,6 +37,7 @@ module.exports = {
       template: "./src/client/views/index.html",
       filename: "./index.html",
     }),
+    new MiniCssExtractPlugin({ filename: "[name].css" }),
     new CleanWebpackPlugin({
       // Simulate the removal of files
       dry: true,
@@ -43,5 +48,6 @@ module.exports = {
       protectWebpackAssets: false,
       // cleanOnceBeforeBuildPatterns: ["./js/build/*", "./css/build/*"],
     }),
+    // new WorkboxPlugin.GenerateSW(),
   ],
 };
