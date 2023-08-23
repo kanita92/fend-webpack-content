@@ -15,6 +15,9 @@ console.log(`Your API key is ${process.env.API_KEY}`);
 
 const app = express();
 
+const cors = require("cors");
+app.use(cors());
+
 app.use(express.static("dist"));
 app.use(express.static("styles"));
 
@@ -41,14 +44,12 @@ app.get("/test", function (req, res) {
   }
 
   // Make the API call to https://api.meaningcloud.com/sentiment-2.1
-  // You can use a library like axios to make the API call
-  // Here's an example using axios:
   axios
     .get(apiUrl, {
       params: {
         key: process.env.API_KEY,
         lang: "auto",
-        txt: url, // Pass the URL as the text parameter
+        txt: url,
       },
     })
     .then((response) => {

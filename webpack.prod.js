@@ -1,39 +1,24 @@
 const path = require("path");
-const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
 const WorkboxPlugin = require("workbox-webpack-plugin");
 
 module.exports = {
-  entry: "./src/client/index.js",
   mode: "production",
-  optimization: {
-    minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
-  },
-  devtool: "source-map",
-  stats: "verbose",
-  output: {
-    libraryTarget: "var",
-    library: "Client",
-    path: path.resolve(__dirname, "dist"),
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "babel-loader",
-      },
-      {
-        test: /.scss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
-      },
-    ],
+  entry: {
+    // // Runtime code for hot module replacement
+    // "webpack/hot/dev-server.js",
+    // // Dev server client for web socket transport, hot and live reload logic
+    // "webpack-dev-server/client/index.js?hot=true&live-reload=true",
+    // Your entry
+    app: "./src/client/index.js",
   },
   plugins: [
+    // Plugin for hot module replacement
+    // new webpack.HotModuleReplacementPlugin(),
     new HtmlWebPackPlugin({
       template: "./src/client/views/index.html",
       filename: "./index.html",
@@ -49,6 +34,34 @@ module.exports = {
       protectWebpackAssets: false,
       // cleanOnceBeforeBuildPatterns: ["./js/build/*", "./css/build/*"],
     }),
-    new WorkboxPlugin.GenerateSW(),
+    new WorkboxPlugin.GenerateSW({
+      // these options encourage the ServiceWorkers to get in there fast
+      // and not allow any straggling "old" SWs to hang around
+      clientsClaim: true,
+      skipWaiting: true,
+    }),
   ],
+  output: {
+    libraryTarget: "var",
+    library: "Client",
+    path: path.resolve(__dirname, "dist"),
+    clean: true,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          "style-loader",
+          "css-loader",
+          { loader: "sass-loader", options: { sourceMap: true } },
+        ],
+      },
+    ],
+  },
 };

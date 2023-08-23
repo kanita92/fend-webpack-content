@@ -7,6 +7,7 @@ async function callServer(formText) {
 
 function handleSubmit(event) {
   event.preventDefault();
+  console.log("handleSubmit triggered");
 
   let formText = document.getElementById("url").value;
 
